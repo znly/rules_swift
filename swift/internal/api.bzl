@@ -571,8 +571,14 @@ def _derive_module_name(*args):
     fail("derive_module_name may only be called with a single argument of " +
          "type 'Label' or two arguments of type 'str'")
 
-  package_part = package.lstrip("//").replace("/", "_").replace("-", "_")
-  name_part = name.replace("-", "_")
+  package_part = package\
+    .lstrip("//")\
+    .replace("/", "_")\
+    .replace("-", "_")\
+    .replace(".", "_")
+  name_part = name\
+    .replace("-", "_")\
+    .replace(".", "_")
   if package_part:
     return package_part + "_" + name_part
   return name_part
