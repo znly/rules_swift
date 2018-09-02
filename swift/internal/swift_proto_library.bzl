@@ -54,7 +54,11 @@ def _swift_proto_library_impl(ctx):
         # Repropagate the `SwiftProtoInfo` provider so that downstream
         # rules/aspects can access the sources if necessary. (This should
         # typically only be used for IDE support.)
+        # Also add an output group to for the generated files.
         swift_proto_info,
+        OutputGroupInfo(
+            pbswift_files = swift_proto_info.pbswift_files,
+        ),
     ]
 
     # Propagate a nested apple_common.Objc provider if present so that
