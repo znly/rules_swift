@@ -307,7 +307,7 @@ def _swift_protoc_gen_aspect_impl(target, aspect_ctx):
     ]
 
     minimal_module_mappings = []
-    if direct_srcs:
+    if direct_srcs and aspect_ctx.attr.modules == "on":
         minimal_module_mappings.append(
             _build_module_mapping_from_srcs(
                 target,
@@ -544,6 +544,9 @@ swift_protoc_gen_aspect = aspect(
     attrs = dicts.add(
         swift_common.toolchain_attrs(),
         {
+            "modules": attr.string(
+                values = ["on", "off"],
+            ),
             "_mkdir_and_run": attr.label(
                 cfg = "host",
                 default = Label(
