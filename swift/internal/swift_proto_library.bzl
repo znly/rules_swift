@@ -71,7 +71,7 @@ def _swift_proto_library_impl(ctx):
 swift_proto_library = rule(
     attrs = {
         "modules": attr.string(
-            default = "on",
+            default = "off",
             values = ["on", "off"],
             doc = """
 Controls wether generate individual modules per proto file. Either `on` (the
