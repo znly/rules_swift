@@ -149,7 +149,7 @@ def _generated_file_path(
     )
     if proto_file:
         generated_file_path = paths.replace_extension(
-            proto_import_path(proto_file, proto_source_root),
+            proto_import_path(proto_file, proto_source_root).replace("/", "_"),
             ".{}.swift".format(extension_fragment),
         )
         return paths.join(dir_path, generated_file_path)
